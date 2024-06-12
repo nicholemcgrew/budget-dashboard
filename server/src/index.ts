@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
+import financialRecordRouter from './routes/financial-records'
 
 // Load environment variables from .env file in the root directory
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
@@ -22,6 +23,8 @@ mongoose
   .connect(mongoURI)
   .then(() => console.log("Connected to the Database"))
   .catch((err) => console.error("Failed to connect to the Database:", err));
+
+app.use('/financial-records', financialRecordRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on Port ${port}`);
