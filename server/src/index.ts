@@ -3,14 +3,16 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import financialRecordRouter from './routes/financial-records'
+import cors from 'cors'
 
 // Load environment variables from .env file in the root directory
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 const app: Express = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 
 app.use(express.json());
+app.use(cors())
 
 const mongoURI: string = process.env.MONGO_URI as string;
 
